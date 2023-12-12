@@ -1,0 +1,4 @@
+replace:(TV Size)
+replace:(Instrumental)
+replace:(instrumental)
+replace:(GAME VERSION)

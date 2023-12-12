@@ -1,27 +1,46 @@
-import logging
 from threading import Timer
 from functools import partial
-from flask import Flask, render_template
-
-from config import captureInterval
+from flask import Flask, render_template, jsonify
 from capture import capture
-from update import database_update
+from updateDB import check, update
+from revision import data
+from config import captureInterval ,updateInterval
+from filepath import *
 
 def repeat(func, interval):
   func()
   Timer(interval, partial(repeat, func, interval)).start()
 
-database_update()
+# データベース更新（1日周期）
+if check() == True: update()
+
+# メイン処理
 repeat(capture, captureInterval)
 
-# Flask settings
+# Flask設定
 app = Flask(__name__)
 
-# Flask routes
 @app.route("/")
 def index():
   return render_template('index.html')
 
-# Run flask
+@app.route('/get_data')
+def get_data():
+  global data
+  title = data['title']
+  artist = data['artist']
+  comment = data['comment']
+  artwork = artwork_img_path
+  ogp = og_img_path
+
+  return jsonify({
+    'title': f'{title}',
+    'artist': f'{artist}',
+    'comment': f'{comment}',
+    'artwork': f'{artwork}',
+    'ogp': f'{ogp}',
+  })
+
+# Flask実行
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.run()

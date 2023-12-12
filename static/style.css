@@ -1,0 +1,84 @@
+body {
+  background-color: #000000;
+  color: #ffffff;
+  font-size: 1.2rem;
+}
+
+.open_text {
+  opacity : 1;
+  transition: opacity 0.5s;
+}
+
+.open_text.view{
+  opacity: 0;
+}
+
+.close_text {
+  opacity : 0;
+  transition: opacity 0.5s;
+}
+
+.close_text.view{
+  opacity: 1;
+}
+
+.open_image {
+  opacity : 1;
+  transition: opacity 0.5s;
+}
+
+.open_image.view{
+  opacity: 0;
+}
+
+.close_image {
+  opacity : 0;
+  transition: opacity 0.5s;
+}
+
+.close_image.view{
+  opacity: 1;
+}
+
+.banner {
+  position: relative;
+  display: inline-block;
+  padding: 0 5px;
+  text-align: center;
+  background-color: #ff0000;
+  &::before{
+    content: ""; position: absolute; z-index: 1; top: 0%; right: 100%; bottom: 0%; left: 0%;
+    background : #000000;
+  }
+  &.active{
+    animation-name: kf_c01a;
+    animation-duration: 0s;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+    &::before{
+      animation-name: kf_c01b;
+      animation-duration: 2s;
+      animation-fill-mode: forwards;
+    }
+  }
+}
+@keyframes kf_c01a {
+  100%{
+    color: inherit;
+  }
+}
+@keyframes kf_c01b {
+  50%{
+    left: 0%; right: 0%;
+  }
+  100%{
+    left: 100%; right: 0%;
+  }
+}
+
+.banner span {
+  position: relative;
+  color: #ffffff;
+  font-weight: bold;
+  z-index: 3;
+}

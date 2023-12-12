@@ -1,8 +1,61 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <title>EX</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Rec</title>
   </head>
   <body>
+    <div class="banner active" id="banner">
+      <span>NOW PLAYING</span>
+    </div>
+
+    <div id="box">
+      <div class="open_text" id="title"></div>
+      <div class="open_text" id="artist"></div>
+      <div class="open_text" id="comment"></div>
+      <img class="open_image" id="artwork" src="" alt="">
+      <img class="open_image" id="ogp" src="" alt="">
+    </div>
 
   </body>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+    function updatePage() {
+      $('.open_text').toggleClass('close_text');
+      $('.open_image').toggleClass('close_image');
+      $('#banner').addClass('active');
+
+      $.ajax({
+        type: 'GET',
+        url: '/get_data',
+        success: function(response) {
+          // 取得したデータを使用してページを更新
+          setTimeout(function() {updatePageContent(response);}, 2000);
+        }
+      });
+    }
+
+    function updatePageContent(data) {
+      // 更新されたコンテンツを表示
+      $('#title').html(data.title);
+      $('#artist').html(data.artist);
+      $('#comment').html(data.comment);
+      $('#artwork').attr('src', data.artwork);
+      $('#ogp').attr('src', data.ogp);
+
+      $('.open_text').toggleClass('close_text');
+      $('.open_image').toggleClass('close_image');
+      $('#banner').removeClass('active');
+    }
+
+    // 5秒ごとにupdateContent関数を呼び出す（適切な間隔を設定）
+    setInterval(updatePage, 5000);
+
+    // 初回のページロード時にもupdateContent関数を呼び出す
+    $(document).ready(function() {
+      updatePage();
+    });
+  </script>
 </html>

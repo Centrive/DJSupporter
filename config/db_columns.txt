@@ -1,0 +1,38 @@
+Track ID
+Name
+Artist
+Album Artist
+Album
+Genre
+Location
+Comments
+Composer
+Kind
+Size
+Total Time
+Disc Number
+Disc Count
+Track Number
+Track Count
+Year
+Date Modified
+Date Added
+Bit Rate
+Sample Rate
+Normalization
+Play Count
+Play Date
+Play Date UTC
+Skip Count
+Skip Date
+Release Date
+Artwork Count
+Sort Album
+Sort Artist
+Sort Name
+Persistent ID
+Track Type
+File Folder Count
+Library Folder Count
+Apple Music
+Playlist Onl
