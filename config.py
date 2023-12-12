@@ -1,0 +1,1 @@
+captureInterval = 5
