@@ -1,10 +1,9 @@
 # インターバル
 captureInterval = 5 # s
-updateInterval = 5000 # ms
 
 # デバッグ用（本番稼働時は空にする）
-masterTitle = ''
-masterArtist = ''
+masterTitle = 'ももいろの鍵'
+masterArtist = 'MORE MORE JUMP'
 
 # パラメータ
 minAccuracy = 0.4 # 精度最低値

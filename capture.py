@@ -5,6 +5,7 @@ import glob
 import pyocr
 from PIL import Image
 from database import database_match
+from revision import data
 from config import masterTitle, masterArtist
 from filepath import *
 
@@ -22,6 +23,7 @@ track_number = 0
 
 def capture():
   global track_number
+  data['check'] = 'False'
 
   # 共有フォルダの画像を読み込み
   filelist = {}

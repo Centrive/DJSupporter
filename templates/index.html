@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@800&display=swap" rel="stylesheet">
     <title>Rec</title>
   </head>
   <body>
@@ -11,28 +14,34 @@
       <span>NOW PLAYING</span>
     </div>
 
-    <div id="box">
-      <div class="open_text" id="title"></div>
-      <div class="open_text" id="artist"></div>
-      <div class="open_text" id="comment"></div>
-      <img class="open_image" id="artwork" src="" alt="">
-      <img class="open_image" id="ogp" src="" alt="">
+    <div class="title open_text" id="title"></div>
+    <div class="artist open_text" id="artist"></div>
+    <div class="comment open_text"id="comment"></div>
+
+    <div>
+      <img class="artwork open_image" id="artwork" src="" alt="">
+    </div>
+
+    <div>
+      <img class="ogp open_image" id="ogp" src="" alt="">
     </div>
 
   </body>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script>
     function updatePage() {
-      $('.open_text').toggleClass('close_text');
-      $('.open_image').toggleClass('close_image');
-      $('#banner').addClass('active');
-
       $.ajax({
         type: 'GET',
         url: '/get_data',
         success: function(response) {
-          // 取得したデータを使用してページを更新
-          setTimeout(function() {updatePageContent(response);}, 2000);
+          if(response.check == 'True'){
+            $('.open_text').toggleClass('close_text');
+            $('.open_image').toggleClass('close_image');
+            $('#banner').addClass('active');
+
+            // 取得したデータを使用してページを更新
+            setTimeout(function() {updatePageContent(response);}, 2000);
+          }
         }
       });
     }

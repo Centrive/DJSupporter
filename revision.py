@@ -1,7 +1,7 @@
 from artwork import artwork_img_get
 from ogp import ogp_core
 
-data = {'title': '', 'artist': '', 'comment': ''}
+data = {'check':'', 'title': '', 'artist': '', 'comment': ''}
 
 def comment(output):
   try:
@@ -34,6 +34,7 @@ def comment(output):
     artwork_img_get(output)
 
     global data
+    data['check'] = 'True'
     data['title'] = output[1]
     data['artist'] = output[2]
     data['comment'] = result

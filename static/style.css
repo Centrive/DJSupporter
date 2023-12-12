@@ -1,7 +1,7 @@
 body {
+  font-family: 'Noto Sans JP', sans-serif;
   background-color: #000000;
   color: #ffffff;
-  font-size: 1.2rem;
 }
 
 .open_text {
@@ -51,23 +51,23 @@ body {
     background : #000000;
   }
   &.active{
-    animation-name: kf_c01a;
+    animation-name: banner_1;
     animation-duration: 0s;
     animation-delay: 1s;
     animation-fill-mode: forwards;
     &::before{
-      animation-name: kf_c01b;
+      animation-name: banner_2;
       animation-duration: 2s;
       animation-fill-mode: forwards;
     }
   }
 }
-@keyframes kf_c01a {
+@keyframes banner_1 {
   100%{
     color: inherit;
   }
 }
-@keyframes kf_c01b {
+@keyframes banner_2 {
   50%{
     left: 0%; right: 0%;
   }
@@ -81,4 +81,27 @@ body {
   color: #ffffff;
   font-weight: bold;
   z-index: 3;
+}
+
+div.parent {
+  position: fixed;
+}
+
+.banner {
+  font-size: 1.6rem;
+}
+
+.title {
+  font-size: 3.6rem;
+  margin: -10px 0 0 0;
+}
+
+.artist {
+  font-size: 2.0rem;
+  margin: -15px 0 0 0;
+}
+
+.comment {
+  font-size: 2.0rem;
+  margin: 10px 0 0 0;
 }
