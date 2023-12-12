@@ -40,6 +40,50 @@ body {
   opacity: 1;
 }
 
+.banner span {
+  position: relative;
+  color: #ffffff;
+  font-weight: bold;
+  z-index: 3;
+}
+
+div.parent {
+  position: fixed;
+}
+
+.banner {
+  font-size: 1.6rem;
+}
+
+.title {
+  font-size: 3.6rem;
+  margin: -8px 0 0 0;
+}
+
+.artist {
+  font-size: 2.0rem;
+  margin: -12px 0 0 0;
+}
+
+.comment {
+  font-size: 2.0rem;
+  margin: 10px 0 0 0;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex img {
+  width: 200px;
+  margin: 0 15px 10px 10px;
+  overflow: hidden;
+}
+
+.ogp {
+  margin: 10px 0 0 10px;
+}
+
 .banner {
   position: relative;
   display: inline-block;
@@ -74,48 +118,4 @@ body {
   100%{
     left: 100%; right: 0%;
   }
-}
-
-.banner span {
-  position: relative;
-  color: #ffffff;
-  font-weight: bold;
-  z-index: 3;
-}
-
-div.parent {
-  position: fixed;
-}
-
-.banner {
-  font-size: 1.6rem;
-}
-
-.title {
-  font-size: 3.6rem;
-  margin: -8px 0 0 0;
-}
-
-.artist {
-  font-size: 2.0rem;
-  margin: -15px 0 0 0;
-}
-
-.comment {
-  font-size: 2.0rem;
-  margin: 10px 0 0 0;
-}
-
-.flex {
-  display: flex;
-}
-
-.flex img {
-  width: 200px;
-  margin: 0 15px 10px 10px;
-  overflow: hidden;
-}
-
-.ogp {
-  margin: 0 0 30px 10px;
 }

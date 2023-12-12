@@ -25,14 +25,15 @@ track_number = 0
 
 def capture():
   global track_number
-  data['check'] = 'False'
+  check = False
+  data['check'] = check
 
   # 共有フォルダの画像を読み込み
   filelist = {}
   for file in glob.glob('./share/*.png'):
     filelist[os.path.getmtime(file)] = file
 
-  img_capture_path = sorted(filelist.items())[1][1]
+  img_capture_path = list(sorted(filelist.items()))[0][1]
   img = cv2.imread(img_capture_path)
 
   # マスタートラック画像取得
