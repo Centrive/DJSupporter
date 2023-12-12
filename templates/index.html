@@ -10,20 +10,23 @@
     <title>Rec</title>
   </head>
   <body>
-    <div class="banner active" id="banner">
-      <span>NOW PLAYING</span>
+    <div class="flex">
+      <div>
+        <img class="artwork open_image" id="artwork" src="{{ url_for('static', filename='artwork_img.png') }}" alt="">
+      </div>
+      <div>
+        <div class="banner active" id="banner">
+          <span>NOW PLAYING</span>
+        </div>
+
+        <div class="title open_text" id="title"></div>
+        <div class="artist open_text" id="artist"></div>
+        <div class="comment open_text"id="comment"></div>
+      </div>
     </div>
 
-    <div class="title open_text" id="title"></div>
-    <div class="artist open_text" id="artist"></div>
-    <div class="comment open_text"id="comment"></div>
-
     <div>
-      <img class="artwork open_image" id="artwork" src="" alt="">
-    </div>
-
-    <div>
-      <img class="ogp open_image" id="ogp" src="" alt="">
+      <img class="ogp open_image" id="ogp" src="{{ url_for('static', filename='og_img.png') }}" alt="">
     </div>
 
   </body>
@@ -37,7 +40,7 @@
           if(response.check == 'True'){
             $('.open_text').toggleClass('close_text');
             $('.open_image').toggleClass('close_image');
-            $('#banner').addClass('active');
+            $('.banner').addClass('active');
 
             // 取得したデータを使用してページを更新
             setTimeout(function() {updatePageContent(response);}, 2000);
@@ -48,15 +51,13 @@
 
     function updatePageContent(data) {
       // 更新されたコンテンツを表示
-      $('#title').html(data.title);
-      $('#artist').html(data.artist);
-      $('#comment').html(data.comment);
-      $('#artwork').attr('src', data.artwork);
-      $('#ogp').attr('src', data.ogp);
+      $('.title').html(data.title);
+      $('.artist').html(data.artist);
+      $('.comment').html(data.comment);
 
       $('.open_text').toggleClass('close_text');
       $('.open_image').toggleClass('close_image');
-      $('#banner').removeClass('active');
+      $('.banner').removeClass('active');
     }
 
     // 5秒ごとにupdateContent関数を呼び出す（適切な間隔を設定）

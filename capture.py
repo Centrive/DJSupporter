@@ -4,6 +4,8 @@ import time
 import glob
 import pyocr
 from PIL import Image
+from ogp import og_img_fail
+from artwork import artwork_img_fail
 from database import database_match
 from revision import data
 from config import masterTitle, masterArtist
@@ -56,6 +58,8 @@ def capture():
     check = False
 
   if check:
+    og_img_fail()
+    artwork_img_fail()
     database_match(txt_title, txt_artist)
 
 def ocr(image, path, threshold, flag):

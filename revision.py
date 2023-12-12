@@ -12,7 +12,7 @@ def comment(output):
       summary = comments[comments.find('』')+1:]
 
       # 番組分類を書き換える
-      # if '企画' in genre: genre = genre.replace('企画', 'プロジェクト')
+      if '企画' in genre: genre = genre.replace('企画', '')
 
       # 摘要を書き換える
       # if 'OP' in summary: summary = summary.replace('OP', 'オープニング')

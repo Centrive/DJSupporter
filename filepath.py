@@ -15,6 +15,7 @@ og_img_fail_path = './images/og_img_fail.png'
 # 設定ファイル
 columns_list = './config/db_columns.txt'
 shaping_name_list = './config/shaping_name.txt'
+exclude_name_list = './config/exclude_name.txt'
 
 # データベース
 database_path = ['./database/db_original.csv', './database/db_trim.csv']

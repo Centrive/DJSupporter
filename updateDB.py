@@ -56,6 +56,17 @@ def update():
   tree = ElementTree.parse(xml_path)
   root = tree.getroot()
 
+  replace = []
+  with open(shaping_name_list, 'r', encoding='UTF-8') as f:
+    for task in f:
+      shaping = task.replace('\n', '').split(':')
+      if shaping[0] == 'replace': replace.append(shaping[1])
+
+  exclude = []
+  with open(exclude_name_list, 'r', encoding='UTF-8') as f:
+    for task in f:
+      exclude.append(task.split('\n'))
+
   # XMLから必要なものだけを抽出
   for i, r in enumerate(root):
     track_list = r.find('dict').findall('dict')
@@ -78,16 +89,11 @@ def update():
       df_data = pd.DataFrame(track_dict.values(), index=header_list, columns=None).T
 
       # Nameに特定の文字列を含まないものを出力
-      replace = []
-      with open(shaping_name_list, 'r', encoding='UTF-8') as f:
-        for task in f:
-          shaping = task.replace('\n', '').split(':')
-          if shaping[0] == 'replace': replace.append(shaping[1])
-
-      if(replace[0] not in str(df_data['Name'])) and \
-        (replace[1] not in str(df_data['Name'])) and \
-        (replace[2] not in str(df_data['Name'])) and \
-        (replace[3] not in str(df_data['Name'])):
+      if((replace[0] not in str(df_data['Name'])) and \
+         (replace[1] not in str(df_data['Name'])) and \
+         (replace[2] not in str(df_data['Name'])) and \
+         (replace[3] not in str(df_data['Name']))) or \
+         (str(df_data['Name']) not in exclude):
         pd.concat([df_init,df_data]).to_csv(database_path[0], columns=select_columns, \
           encoding='UTF-8', mode='a', index=False, header=False, quoting=csv.QUOTE_ALL)
 

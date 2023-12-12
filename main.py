@@ -1,3 +1,4 @@
+import sys
 from threading import Timer
 from functools import partial
 from flask import Flask, render_template, jsonify
@@ -7,12 +8,16 @@ from revision import data
 from config import captureInterval
 from filepath import *
 
+args = sys.argv
+
 def repeat(func, interval):
   func()
   Timer(interval, partial(repeat, func, interval)).start()
 
 # データベース更新（1日周期）
 if check() == True: update()
+if len(args) > 1:
+  if args[1] == 'update': update()
 
 # メイン処理
 repeat(capture, captureInterval)

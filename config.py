@@ -2,8 +2,8 @@
 captureInterval = 5 # s
 
 # デバッグ用（本番稼働時は空にする）
-masterTitle = 'ももいろの鍵'
-masterArtist = 'MORE MORE JUMP'
+masterTitle = 'メタモルフォシス'
+masterArtist = '電音部'
 
 # パラメータ
 minAccuracy = 0.4 # 精度最低値
