@@ -1,6 +1,6 @@
 # デバッグ用（本番稼働時は空にする）
-masterTitle   = '往け'
-masterArtist  = 'LiSA'
+masterTitle   = ''
+masterArtist  = ''
 
 # インターバル
 captureInterval = 5 # seconds

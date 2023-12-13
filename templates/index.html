@@ -14,9 +14,9 @@
     <div class="flex">
       <div><img class="artwork open_image" id="artwork" src="" alt=""></div>
       <div>
-        <div class="title open_text" id="title">TEST</div>
-        <div class="artist open_text" id="artist">TEST</div>
-        <div class="comment open_text" id="comment">TEST</div>
+        <div class="title open_text" id="title"></div>
+        <div class="artist open_text" id="artist"></div>
+        <div class="comment open_text" id="comment"></div>
       </div>
     </div>
     <div><img class="ogp open_image" id="ogp" src="" alt=""></div>
@@ -24,16 +24,17 @@
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script>
     function updatePage() {
-
       $.ajax({
         type: 'GET',
         url: '/get_data',
         success: function(response) {
-          if(response.check == 'True') {
+          if(response.check == 'True'){
             $('.open_text').toggleClass('close_text');
             $('.open_image').toggleClass('close_image');
             $('.banner').addClass('active');
-            updatePageContent(response)
+
+            // 取得したデータを使用してページを更新
+            setTimeout(function() {updatePageContent(response);}, 2000);
           }
         }
       });
@@ -52,12 +53,10 @@
       $('.banner').removeClass('active');
     }
 
-    // 5秒ごとにupdatePage関数を呼び出す（適切な間隔を設定）
+    // 5秒ごとにupdateContent関数を呼び出す（適切な間隔を設定）
     setInterval(updatePage, 5000);
 
-    updatePage();
-
-    // 初回のページロード時にもupdatePage関数を呼び出す
+    // 初回のページロード時にもupdateContent関数を呼び出す
     $(document).ready(function() {
       updatePage();
     });

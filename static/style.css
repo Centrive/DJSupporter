@@ -104,12 +104,12 @@ body {
 }
 
 .close_text {
-  opacity : 1;
+  opacity : 0;
   transition: opacity 0.5s;
 }
 
 .close_text.view {
-  opacity: 0;
+  opacity: 1;
 }
 
 .open_image {
@@ -122,10 +122,10 @@ body {
 }
 
 .close_image {
-  opacity : 1;
+  opacity : 0;
   transition: opacity 0.5s;
 }
 
 .close_image.view {
-  opacity: 0;
+  opacity: 1;
 }
