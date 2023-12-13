@@ -8,7 +8,7 @@ from urllib.parse import unquote
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
-from config import primevideoRatio, primevideoSearchRange, addMarginWidth, addMarginHeight
+from config import primevideoRatio, primevideoSearchRange, ogpAddMargin, ogpResizeSize
 from filepath import *
 
 # Selenium設定
@@ -30,20 +30,14 @@ def ogp_core(output, title, genre):
     if (genre == 'TVアニメ') or (genre == '映画'):
       synopsis_url = primevideo_coverimage_get(title)
       if synopsis_url: # 取得成功
-        # PrimeVideoのあらすじを取得
-        synopsis = primevideo_synopsis_get(synopsis_url)
+        # synopsis = primevideo_synopsis_get(synopsis_url) # PrimeVideoのあらすじを取得
         detail_text_mode = 'synopsis'
       else:
-        # Annict経由でOGP画像を取得
-        annict_og_image_get(title)
-        # Wikipediaの概要を取得
-        # wiki_summary = wikipedia_overview_get(title)
+        annict_og_image_get(title) # Annict経由でOGP画像を取得
+        # wiki_summary = wikipedia_overview_get(title) # Wikipediaの概要を取得
         detail_text_mode = 'wikipedia'
     else:
-      # Annict経由でOGP画像を取得
-      annict_og_image_get(title)
-      # Wikipediaの概要を取得
-      # wiki_summary = wikipedia_overview_get(title)
+      # wiki_summary = wikipedia_overview_get(title) # Wikipediaの概要を取得
       detail_text_mode = 'wikipedia'
 
   if detail_text_mode == 'synopsis':
@@ -51,9 +45,12 @@ def ogp_core(output, title, genre):
   elif detail_text_mode == 'wikipedia':
     pass
 
+  # OGP画像の縦横比を維持した状態でリサイズ
+  image_resize_aspect_ratio_fixed()
 
 def primevideo_coverimage_get(title):
   synopsis_url = ''
+
   try:
     url = 'https://www.amazon.co.jp/Amazon-Video/b/?ie=UTF8&node=2351649051'
     driver.get(url)
@@ -97,7 +94,6 @@ def primevideo_coverimage_get(title):
 
 def primevideo_synopsis_get(url):
   output = ''
-
   try:
     driver.get(url)
     target_area = driver.find_element(By.CLASS_NAME, 'dv-dp-node-synopsis')
@@ -162,8 +158,8 @@ def wikipedia_overview_get(title):
   return output
 
 def og_img_fail():
-    # 起動時、あるいはOGP画像の取得に失敗した場合は画像更新
-    Image.open(og_img_fail_path).save(og_img_path)
+  # OGP画像の取得に失敗した場合は画像更新
+  Image.open(og_img_fail_path).save(og_img_path)
 
 def data_shaping(txt, path):
   text = txt
@@ -178,9 +174,30 @@ def data_shaping(txt, path):
 
 def image_add_margin(image):
   w1, h1 = image.size
-  w2 = w1 + addMarginWidth + addMarginWidth
-  h2 = h1 + addMarginHeight + addMarginHeight
+  aw, ah = ogpAddMargin
+  w2 = w1 + aw + aw
+  h2 = h1 + ah + ah
   color = (255, 255, 255)
   result = Image.new(image.mode, (w2, h2), color)
-  result.paste(image, (addMarginWidth, addMarginHeight))
+  result.paste(image, (aw, ah))
   return result
+
+def image_resize_aspect_ratio_fixed():
+  image = Image.open(og_img_path).convert('RGBA')
+  w, h = ogpResizeSize
+  ratio = min(w / image.width, h / image.height)
+  resize_size = (round(ratio * image.width), round(ratio * image.height))
+  resize_image = image.resize(resize_size)
+
+  color = (0, 0, 0, 255)
+  rw, rh = resize_image.width, resize_image.height
+  if w == rw:
+    margin_height = int((h - rh) / 2)
+    result = Image.new(resize_image.mode, (w, h), color)
+    result.paste(resize_image, (0, margin_height))
+  elif h == rh:
+    margin_width = int((w - rw) / 2)
+    result = Image.new(resize_image.mode, (w, h), color)
+    result.paste(resize_image, (margin_width, 0))
+
+  result.save(og_img_path)

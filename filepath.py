@@ -22,4 +22,4 @@ database_path = ['./database/db_original.csv', './database/db_trim.csv']
 if os.name == 'nt': # Windows
   xml_path = r'\\CERI-NAS\\music\\iTunes\\iTunes Library.xml'
 elif os.name == 'posix': # Mac or Linux
-  xml_path = './iTunes Library.xml'
+  xml_path = './test/iTunes Library.xml'

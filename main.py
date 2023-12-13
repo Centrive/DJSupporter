@@ -1,7 +1,8 @@
 import sys
+from flask import Flask, render_template, jsonify
+from multiprocessing import Process
 from threading import Timer
 from functools import partial
-from flask import Flask, render_template, jsonify
 from capture import capture
 from updateDB import check, update
 from revision import data
@@ -32,20 +33,13 @@ def index():
 @app.route('/get_data')
 def get_data():
   global data
-  check = data['check']
-  title = data['title']
-  artist = data['artist']
-  comment = data['comment']
-  artwork = artwork_img_path
-  ogp = og_img_path
-
   return jsonify({
-    'check': f'{check}',
-    'title': f'{title}',
-    'artist': f'{artist}',
-    'comment': f'{comment}',
-    'artwork': f'{artwork}',
-    'ogp': f'{ogp}',
+    'check':    data['check'],
+    'title':    data['title'],
+    'artist':   data['artist'],
+    'comment':  data['comment'],
+    'artwork':  artwork_img_path,
+    'ogp':      og_img_path,
   })
 
 # Flask実行

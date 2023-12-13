@@ -5,7 +5,7 @@ from PIL import Image
 from io import BytesIO
 from mutagen.id3 import ID3
 from urllib.parse import unquote
-from config import itunesRatio, itumesSearchLimit, resizeSize
+from config import itunesRatio, itumesSearchLimit, artworkResizeSize
 from filepath import *
 
 def artwork_img_get(output):
@@ -22,7 +22,7 @@ def artwork_img_get_offline(output, path):
     apic = ID3(path).get('APIC:')
     if apic is not None:
       artwork_img = Image.open(BytesIO(apic.data))
-      resized_img = artwork_img.resize((resizeSize, resizeSize))
+      resized_img = artwork_img.resize((artworkResizeSize, artworkResizeSize))
       resized_img.save(artwork_img_path)
       print('アートワークを取得しました。(OFFLINE)')
     else:
@@ -87,7 +87,7 @@ def artwork_img_get_online(output):
 
     if url_list:
       artwork_img = Image.open(BytesIO(requests.get(url_conversion(url_list[0])).content))
-      resized_img = artwork_img.resize((resizeSize, resizeSize))
+      resized_img = artwork_img.resize((artworkResizeSize, artworkResizeSize))
       resized_img.save(artwork_img_path)
       print('アートワークを取得しました。(ONLINE)')
       return False
