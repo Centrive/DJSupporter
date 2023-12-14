@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@800&display=swap">
+    <title>DJSupporter</title>
+  </head>
+  <body>
+    <div class="banner active" id="banner"><span>NOW PLAYING</span></div>
+    <div class="flex">
+      <div><img class="artwork open_image" id="artwork" src="" alt=""></div>
+      <div>
+        <div class="title open_text" id="title"></div>
+        <div class="artist open_text" id="artist"></div>
+        <div class="comment open_text" id="comment"></div>
+      </div>
+    </div>
+    <div><img class="ogp open_image" id="ogp" src="" alt=""></div>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+    function checkSetting() {
+      $.ajax({
+        type: 'GET',
+        url: '/setting',
+        success: function(response) {
+          if(response.setting == 'True'){
+            updatePage();
+          }
+        }
+      });
+    }
+
+    function updatePage() {
+      $.ajax({
+        type: 'GET',
+        url: '/get_data',
+        success: function(response) {
+          $('.open_text').toggleClass('close_text');
+          $('.open_image').toggleClass('close_image');
+          $('.banner').addClass('active');
+
+          // 取得したデータを使用してページを更新
+          setTimeout(function() {updatePageContent(response);}, 2000);
+        }
+      });
+    }
+
+    function updatePageContent(response) {
+      // 更新されたコンテンツを表示
+      $('.title').html(response.title);
+      $('.artist').html(response.artist);
+      $('.comment').html(response.comment);
+      $('.artwork').attr('src', response.artwork + '?' + new Date().getTime());
+      $('.ogp').attr('src', response.ogp + '?' + new Date().getTime());
+
+      $('.open_text').toggleClass('close_text');
+      $('.open_image').toggleClass('close_image');
+      $('.banner').removeClass('active');
+    }
+
+    // 1秒ごとにcheckSetting関数を呼び出す（適切な間隔を設定）
+    setInterval(checkSetting, 3000);
+
+    // 初回のページロード時にもcheckSetting関数を呼び出す
+    $(document).ready(function() {
+      checkSetting();
+    });
+  </script>
+</html>

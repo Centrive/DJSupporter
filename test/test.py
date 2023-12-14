@@ -19,4 +19,4 @@ while True:
   if i == 3:
     i = 0
 
-  time.sleep(30)
+  time.sleep(20)
