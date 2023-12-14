@@ -69,7 +69,7 @@ def artwork_img_get_online(output):
       'entity':     'song',
       'country':    'JP',
       'lang':       'ja_jp',
-      'limit':      itumesSearchLimit,
+      'limit':      itunesSearchLimit,
     }
     uri = 'https://itunes.apple.com/search'
     uri = uri + '?' + itunes_api_search_encoder(params)
