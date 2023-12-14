@@ -19,6 +19,8 @@ def revision(output):
     data['comment'] = result
 
 def comment(output):
+  genre, title, summary, result = '', '', '', ''
+
   try:
     if '『' in str(output[-1]): # コメントが存在する場合
       comments = output[7] # Comments
@@ -40,6 +42,6 @@ def comment(output):
       print('番組名: ' + result)
 
   except:
-    genre, title, summary, result = '', '', '', ''
+    pass
 
   return genre, title, summary, result

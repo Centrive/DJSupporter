@@ -34,15 +34,13 @@ def ogp(genre, title):
       # wiki_summary = wikipedia_overview_get(title) # Wikipediaの概要を取得
       detail_text_mode = 'wikipedia'
 
-  if detail_text_mode == 'synopsis':
-    pass
-  elif detail_text_mode == 'wikipedia':
-    pass
+    if detail_text_mode == 'synopsis':
+      pass
+    elif detail_text_mode == 'wikipedia':
+      pass
 
   # OGP画像の縦横比を維持した状態でリサイズ
   image_resize_aspect_ratio_fixed()
-
-  return 0
 
 def primevideo_coverimage_get(title):
   synopsis_url = ''

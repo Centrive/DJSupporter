@@ -5,7 +5,7 @@ masterTitle   = ''
 masterArtist  = ''
 
 # インターバル
-captureInterval = 5 # seconds
+captureInterval = 1 # seconds
 
 # 楽曲解析パラメータ
 minAccuracy     = 0.4 # 精度最低値
@@ -18,7 +18,7 @@ primevideoSearchRange = 10 # Amazon検索上限
 
 # 画像加工パラメータ
 artworkResizeSize = 500 # アートワーク画像のリサイズサイズ（正方形）
-ogpResizeSize = (1000, 800) # OGP画像のリサイズサイズ
+ogpResizeSize = (920, 700) # OGP画像のリサイズサイズ
 ogpAddMargin = (0, 0) # OGP画像に追加する余白サイズ
 
 # Annict設定
