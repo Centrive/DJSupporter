@@ -10,16 +10,18 @@
     <title>DJSupporter</title>
   </head>
   <body>
-    <div class="banner active" id="banner"><span>NOW PLAYING</span></div>
-    <div class="flex">
-      <div><img class="artwork open_image" id="artwork" src="" alt=""></div>
-      <div>
-        <div class="title open_text" id="title"></div>
-        <div class="artist open_text" id="artist"></div>
-        <div class="comment open_text" id="comment"></div>
+    <div class="background">
+      <div><img class="ogp open_image" id="ogp" src="" alt=""></div>
+      <div class="banner active"><span>NOW PLAYING</span></div>
+      <div class="flex">
+        <div><img class="artwork open_image" id="artwork" src="" alt=""></div>
+        <div>
+          <div class="title open_text">TEST</div>
+          <div class="artist open_text">TEST</div>
+          <div class="comment open_text">TEST</div>
+        </div>
       </div>
     </div>
-    <div><img class="ogp open_image" id="ogp" src="" alt=""></div>
   </body>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script>
@@ -64,7 +66,7 @@
     }
 
     // 1秒ごとにcheckSetting関数を呼び出す（適切な間隔を設定）
-    setInterval(checkSetting, 3000);
+    setInterval(checkSetting, 1000);
 
     // 初回のページロード時にもcheckSetting関数を呼び出す
     $(document).ready(function() {

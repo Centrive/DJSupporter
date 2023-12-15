@@ -8,7 +8,7 @@ from filepath import *
 
 def check():
   if not os.path.exists(xml_path): # ライブラリファイルが存在しない場合
-    print('iTunesライブラリファイルが見つかりません。プログラムを終了します。')
+    print('iTunesライブラリファイルが見つかりません')
     exit() # スクリプトを終了
 
   if os.path.exists(database_path[0]) and os.path.exists(database_path[1]): # CSVファイルが存在する場合
@@ -21,15 +21,15 @@ def check():
 
     # 最終更新日時が1日以上前の場合、データベースを更新する
     if (db_o < today) or (db_t < today):
-      print('データベースを更新します。')
+      print('データベースを更新します')
       return True
     else:
       last_update = str(datetime.fromtimestamp(db_o).strftime('%Y-%m-%d %H:%M:%S'))
-      print('データベースは更新されませんでした。(Last updated: ' + last_update + ')')
+      print('データベースは更新されませんでした(Last updated: ' + last_update + ')')
       return False
 
   else: # データベースを作成する
-    print('ファイルが見つかりませんでした。データベースを新規作成します。')
+    print('データベースを新規作成します')
     return True
 
 def update():
@@ -106,4 +106,4 @@ def update():
   fw.write(csv_data)
   fw.close()
 
-  print('データベースの更新が完了しました。')
+  print('データベースの更新が完了しました')

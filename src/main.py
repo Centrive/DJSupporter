@@ -21,7 +21,7 @@ def repeat(func, interval):
 # データベース更新
 if len(args) > 1:
   if args[1] == 'update':
-    print('データベースを強制更新します。')
+    print('データベースを強制更新します')
     update()
 else:
   if check() == True: update()

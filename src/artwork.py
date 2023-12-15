@@ -22,7 +22,7 @@ def artwork_img_get_offline(output, path):
       artwork_img = Image.open(BytesIO(apic.data))
       resized_img = artwork_img.resize((artworkResizeSize, artworkResizeSize))
       resized_img.save(artwork_img_path)
-      print('アートワークを取得しました。(OFFLINE)')
+      print('アートワークを取得しました(OFFLINE)')
     else:
       if artwork_img_get_online(output):
         artwork_img_fail()
@@ -86,7 +86,7 @@ def artwork_img_get_online(output):
       artwork_img = Image.open(BytesIO(requests.get(url_conversion(url_list[0])).content))
       resized_img = artwork_img.resize((artworkResizeSize, artworkResizeSize))
       resized_img.save(artwork_img_path)
-      print('アートワークを取得しました。(ONLINE)')
+      print('アートワークを取得しました(ONLINE)')
       return False
 
   except:

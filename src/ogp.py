@@ -76,7 +76,7 @@ def primevideo_coverimage_get(title):
               convert_img = Image.open(og_img_path).convert('RGBA')
               convert_img = image_add_margin(convert_img)
               convert_img.save(og_img_path)
-              print('作品イメージを取得しました。-> {}'.format(title_text))
+              print('作品イメージを取得しました(Prime) -> {}'.format(title_text))
               break
 
       except:
@@ -95,7 +95,7 @@ def primevideo_synopsis_get(url):
     target_area = driver.find_element(By.CLASS_NAME, 'dv-dp-node-synopsis')
     synopsis = target_area.find_element(By.TAG_NAME, 'span')
     output = synopsis.text
-    print('あらすじを取得しました。')
+    print('あらすじを取得しました')
 
   except:
     pass
@@ -116,7 +116,7 @@ def annict_og_image_get(title):
           img.write(image)
           convert_img = Image.open(og_img_path).convert('RGBA')
           convert_img.save(og_img_path)
-        print('作品イメージを取得しました。')
+        print('作品イメージを取得しました(Annict)')
 
       else:
         og_img_fail()
@@ -148,7 +148,7 @@ def wikipedia_overview_get(title):
     if page.summary:
       output = page.summary#.replace('\n', '')
       output = output + '\n（Wikipediaより引用）'
-      print('Wikipediaの概要を取得しました。')
+      print('Wikipediaの概要を取得しました')
 
   except:
     pass
