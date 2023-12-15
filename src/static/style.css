@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  user-select: none;
 }
 .background {
   position: absolute;
@@ -40,8 +41,8 @@
   background-color: #000;
   width: 300px;
   height: 280px;
-  margin: 0 0 20px 20px;
-  overflow: hidden;
+  margin: 0 40px 20px 20px;
+  /* overflow: hidden; */
 }
 .title, .artist, .comment {
   font-family: 'Noto Sans JP', sans-serif;
@@ -51,30 +52,28 @@
 .title {
   position: relative;
   font-size: 5.0rem;
-  margin: 0 0 0 20px;
+  margin: 0 0 0 0;
 }
 .artist {
   position: relative;
   font-size: 3.0rem;
-  margin: -10px 0 0 20px;
+  margin: -10px 0 0 0;
 }
 .comment {
   position: relative;
   font-size: 3.0rem;
-  margin: 30px 0 0 20px;
+  margin: 20px 0 0 0;
 }
 
-
-
+/* CSS Animation */
 .banner {
   &::before {
     content: ""; position: absolute; z-index: 1; top: 0%; right: 100%; bottom: 0%; left: 0%;
     background-color: #000;
   }
   &.active {
-    /* animation-name: banner_1; */
     animation-duration: 0s;
-    animation-delay: 1s;
+    animation-delay: 0s;
     animation-fill-mode: forwards;
     &::before {
       animation-name: banner;
@@ -84,47 +83,62 @@
   }
 }
 @keyframes banner {
-  50%{
+  0% {
     left: 0%; right: 0%;
   }
-  100%{
+  100% {
     left: 100%; right: 0%;
   }
 }
 
-.open_text {
-  opacity : 1;
-  transition: opacity 0.5s;
-
+.fade-in {
+  animation-name: fadein-bottom;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+@keyframes fadein-bottom {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.open_text.view {
-  opacity: 0;
+.fade-out {
+  animation-name: fadeout-bottom;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+@keyframes fadeout-bottom {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
 }
 
-.close_text {
-  opacity : 0;
-  transition: opacity 0.5s;
-}
-
-.close_text.view {
+.open {
   opacity: 1;
-}
-
-.open_image {
-  opacity : 1;
   transition: opacity 0.5s;
 }
 
-.open_image.view {
+.open.view {
   opacity: 0;
 }
 
-.close_image {
-  opacity : 0;
+.close {
+  opacity: 0;
   transition: opacity 0.5s;
 }
 
-.close_image.view {
+.close.view {
   opacity: 1;
 }

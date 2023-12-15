@@ -11,14 +11,14 @@
   </head>
   <body>
     <div class="background">
-      <div><img class="ogp open_image" id="ogp" src="" alt=""></div>
+      <div><img class="ogp open" id="ogp" src="" alt=""></div>
       <div class="banner active"><span>NOW PLAYING</span></div>
       <div class="flex">
-        <div><img class="artwork open_image" id="artwork" src="" alt=""></div>
+        <div><img class="artwork open" id="artwork" src="" alt=""></div>
         <div>
-          <div class="title open_text">TEST</div>
-          <div class="artist open_text">TEST</div>
-          <div class="comment open_text">TEST</div>
+          <div class="title fade-in">TEST</div>
+          <div class="artist fade-in">TEST</div>
+          <div class="comment fade-in">TEST</div>
         </div>
       </div>
     </div>
@@ -42,8 +42,8 @@
         type: 'GET',
         url: '/get_data',
         success: function(response) {
-          $('.open_text').toggleClass('close_text');
-          $('.open_image').toggleClass('close_image');
+          $('.open').toggleClass('close');
+          $('.fade-in').toggleClass('fade-out');
           $('.banner').addClass('active');
 
           // 取得したデータを使用してページを更新
@@ -60,8 +60,8 @@
       $('.artwork').attr('src', response.artwork + '?' + new Date().getTime());
       $('.ogp').attr('src', response.ogp + '?' + new Date().getTime());
 
-      $('.open_text').toggleClass('close_text');
-      $('.open_image').toggleClass('close_image');
+      $('.open').toggleClass('close');
+      $('.fade-in').toggleClass('fade-out');
       $('.banner').removeClass('active');
     }
 

@@ -27,7 +27,7 @@ else:
   if check() == True: update()
 
 # メイン処理
-repeat(get_master_track, captureInterval)
+# repeat(get_master_track, captureInterval)
 
 # Flask設定
 app = Flask(__name__)
