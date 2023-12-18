@@ -1,3 +1,5 @@
+# http://127.0.0.1:5000/
+
 import sys
 import logging
 from flask import Flask, render_template, jsonify
@@ -27,7 +29,7 @@ else:
   if check() == True: update()
 
 # メイン処理
-# repeat(get_master_track, captureInterval)
+repeat(get_master_track, captureInterval)
 
 # Flask設定
 app = Flask(__name__)

@@ -10,6 +10,10 @@ def artwork_img_fail():
   # アートワーク画像の取得に失敗した場合は画像更新
   Image.open(artwork_img_fail_path).save(artwork_img_path)
 
+def ogp_to_artwork():
+  # OGP画像をアートワーク画像に差し替え
+  Image.open(artwork_img_path).save(og_img_path)
+
 def image_add_margin(image):
   w1, h1 = image.size
   aw, ah = ogpAddMargin

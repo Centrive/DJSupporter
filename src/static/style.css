@@ -2,6 +2,21 @@
   margin: 0;
   padding: 0;
   user-select: none;
+  overflow:hidden
+}
+.ogp-area {
+  background-color: #000;
+  width: 920px;
+  height: 700px;
+  margin: 20px 0 30px 20px;
+  border: 2px solid #fff;
+}
+.artwork-area {
+  background-color: #000;
+  width: 260px;
+  height: 260px;
+  margin: 0 40px 0 20px;
+  border: 2px solid #ff0000;
 }
 .background {
   position: absolute;
@@ -14,13 +29,12 @@
   background-color: #000;
   width: 920px;
   height: 700px;
-  margin: 20px;
-  border: 10px;
+  /* margin: 20px 0 30px 20px; */
 }
 .banner {
   position: relative;
   background-color: #ff0000;
-  width: 300px;
+  width: 264px;
   height: 40px;
   margin: 0 20px;
   font-weight: bold;
@@ -28,7 +42,7 @@
 }
 .banner span {
   position: relative;
-  font-size: 2.0rem;
+  font-size: 1.8rem;
   color: #fff;
   z-index: 1;
   line-height: 40px;
@@ -39,10 +53,9 @@
 .artwork {
   position: relative;
   background-color: #000;
-  width: 300px;
-  height: 280px;
-  margin: 0 40px 20px 20px;
-  /* overflow: hidden; */
+  width: 260px;
+  height: 260px;
+  /* margin: 0 40px 0 20px; */
 }
 .title, .artist, .comment {
   font-family: 'Noto Sans JP', sans-serif;
@@ -51,18 +64,18 @@
 }
 .title {
   position: relative;
-  font-size: 5.0rem;
+  font-size: 4.4rem;
   margin: 0 0 0 0;
 }
 .artist {
   position: relative;
   font-size: 3.0rem;
-  margin: -10px 0 0 0;
+  margin: -10px 0 0 4px;
 }
 .comment {
   position: relative;
   font-size: 3.0rem;
-  margin: 20px 0 0 0;
+  margin: 20px 0 0 4px;
 }
 
 /* CSS Animation */

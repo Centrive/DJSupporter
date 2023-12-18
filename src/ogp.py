@@ -1,4 +1,5 @@
 import re
+import time
 import requests
 import wikipediaapi
 from PIL import Image
@@ -31,6 +32,7 @@ def ogp(genre, title):
         # wiki_summary = wikipedia_overview_get(title) # Wikipediaの概要を取得
         detail_text_mode = 'wikipedia'
     else:
+      ogp_to_artwork()
       # wiki_summary = wikipedia_overview_get(title) # Wikipediaの概要を取得
       detail_text_mode = 'wikipedia'
 
@@ -38,6 +40,9 @@ def ogp(genre, title):
       pass
     elif detail_text_mode == 'wikipedia':
       pass
+
+  else:
+    ogp_to_artwork()
 
   # OGP画像の縦横比を維持した状態でリサイズ
   image_resize_aspect_ratio_fixed()
@@ -83,7 +88,7 @@ def primevideo_coverimage_get(title):
         pass
 
   except:
-    og_img_fail()
+    ogp_to_artwork()
 
   return synopsis_url
 
@@ -119,13 +124,13 @@ def annict_og_image_get(title):
         print('作品イメージを取得しました(Annict)')
 
       else:
-        og_img_fail()
+        ogp_to_artwork()
 
     else:
-      og_img_fail()
+      ogp_to_artwork()
 
   except:
-    og_img_fail()
+    ogp_to_artwork()
 
 def wikipedia_overview_get(title):
   shape_title = shaping(title, shaping_name_list)
