@@ -1,4 +1,5 @@
 import os
+import sys
 import csv
 import pathlib
 import pandas as pd
@@ -107,3 +108,4 @@ def update():
   fw.close()
 
   print('データベースの更新が完了しました')
+  sys.exit()

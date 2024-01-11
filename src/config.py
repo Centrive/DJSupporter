@@ -13,7 +13,7 @@ expansion       = 0.1 # 精度許容範囲
 averageAccuracy = 0.4 # 精度平均閾値
 itunesRatio       = 0.5 # iTunes検索結果との類似度
 itunesSearchLimit = 30  # iTunes検索上限
-primevideoRatio       = 0.8 # Amazon検索結果との類似度
+primevideoRatio       = 0.82 # Amazon検索結果との類似度
 primevideoSearchRange = 10 # Amazon検索上限
 
 # 画像加工パラメータ

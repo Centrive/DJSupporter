@@ -20,7 +20,7 @@ def repeat(func, interval):
   func()
   Timer(interval, partial(repeat, func, interval)).start()
 
-# データベース更新
+# データベース更新（更新したら終了）
 if len(args) > 1:
   if args[1] == 'update':
     print('データベースを強制更新します')
