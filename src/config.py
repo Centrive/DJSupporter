@@ -1,8 +1,8 @@
 from annict.api import API
 
 # デバッグ用（本番稼働時は空にする）
-masterTitle   = ''
-masterArtist  = ''
+masterTitle   = '爆ぜて咲く'
+masterArtist  = 'トゲンシトゲアリ'
 
 # インターバル
 captureInterval = 1 # seconds

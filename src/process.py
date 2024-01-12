@@ -1,3 +1,4 @@
+import cv2
 from PIL import Image
 from config import  *
 from filepath import *
@@ -12,7 +13,19 @@ def artwork_img_fail():
 
 def ogp_to_artwork():
   # OGP画像をアートワーク画像に差し替え
-  Image.open(artwork_img_path).save(og_img_path)
+  artwork = cv2.imread(artwork_img_path)
+
+  w1, h1 = ogpResizeSize
+  half = int((w1 - h1) / 2)
+  background = cv2.resize(artwork, (w1, w1))
+  background = background[half : h1+half, 0 : w1]
+  background = cv2.blur(background, (20, 20))
+  background = cv2.convertScaleAbs(background, alpha=0.6, beta=0)
+
+  artwork = cv2.resize(artwork, (h1, h1))
+  w2, h2 = artwork.shape[:2]
+  background[0 : w2, half : h2+half] = artwork
+  cv2.imwrite(og_img_path, background)
 
 def image_add_margin(image):
   w1, h1 = image.size
